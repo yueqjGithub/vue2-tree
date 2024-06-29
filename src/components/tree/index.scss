@@ -1,0 +1,205 @@
+$--font-large: 18;
+$--font-middle: 16;
+$--font-normal: 12;
+$--font-small: 10;
+
+// 圆圈大小-保持偶数
+$circle-size: 36;
+// 公司名称宽度
+$name-width: $--font-normal * 4;
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  .self {
+    margin-right: #{calc($circle-size / 2)}px;
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    .progress-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-end;
+      padding-left: #{calc($circle-size / 2)}px;
+      align-self: stretch;
+      padding-bottom: #{calc($circle-size / 2)}px;
+      &.first {
+        border-left: 1px solid #fff;
+        transform: translateX(-1px);
+      }
+      .progress-item {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        align-items: center;
+        font-size: #{$--font-normal}px;
+        margin-bottom: 5px;
+        .label {
+          color: #333;
+        }
+        .degree {
+          width: #{$--font-normal * 10}px;
+          margin: 0 5px;
+          border-radius: 999px;
+          height: #{$--font-normal * 2}px;
+          background: #ccc;
+          position: relative;
+          .degree-inner {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: var(--percent);
+            height: 100%;
+            background: var(--background);
+            border-radius: 999px;
+            z-index: 1;
+          }
+          .degree-percent {
+            color: #fff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+          }
+        }
+        .percent {
+          color: #333;
+          width: #{$--font-normal * 4}px;
+          text-align: right;
+        }
+      }
+    }
+    .splitContainer {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      position: relative;
+      align-self: stretch;
+      .splitLine {
+        flex: 1;
+        height: 1px;
+        background: #409EFF;
+      }
+      .companyName {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        $size: calc($circle-size + 10);
+        $transform-x: round($size / 2);
+        // transform: translateX(-#{$transform-x}px);
+        .circle {
+          width: #{$size}px;
+          height: #{$size}px;
+          border-radius: 999px;
+          background: #409EFF;
+          margin-right: 5px;
+          border: 5px solid #fff;
+          margin-left: -#{$transform-x}px;
+        }
+        .name {
+          font-size: #{$--font-large}px;
+          margin-right: 5px;
+        }
+      }
+    }
+    .btmContainer {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      align-self: stretch;
+      padding-left: #{calc($circle-size / 2)}px;
+      padding-top: #{calc($circle-size / 2)}px;
+      padding-bottom: 50px;
+      &.last {
+        border-left: 1px solid #fff;
+        transform: translateX(-1px);
+      }
+      .contractA {
+        color: #ccc;
+        font-size: #{$--font-normal}px;
+      }
+      .amountContainer {
+        font-size: #{$--font-small}px;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: max-content;
+        .amountRow {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+          margin-bottom: 3px;
+        }
+      }
+      .actContainer {
+        margin-left: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-end;
+        width: max-content;
+        .contractPrice {
+          color: #409EFF;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+          align-items: center;
+          font-size: #{$--font-normal}px;
+          margin-bottom: 8px;
+          span{
+            margin-right: 5px;
+          }
+        }
+        .btnContainer {
+          padding: 8px;
+          border-radius: 5px;
+          border: 1px solid #409EFF;
+          .btnRow {
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 5px;
+            font-size: #{$--font-normal}px;
+            .btnRowLabel {
+              color: #333;
+              margin-right: 5px;
+            }
+            .btnList {
+              display: flex;
+              flex-direction: row;
+              justify-content: flex-start;
+              align-items: center;
+              .btn {
+                &:not(:first-child) {
+                  margin-left: 3px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .childrenContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-left: 1px solid #409EFF;
+  }
+}
