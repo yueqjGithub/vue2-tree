@@ -40,8 +40,8 @@ $name-width: $--font-normal * 4;
       align-self: stretch;
       padding-bottom: #{calc($circle-size / 2)}px;
       &.first {
-        border-left: 1px solid #fff;
-        transform: translateX(-1px);
+        border-left: 4px solid #fff;
+        transform: translateX(-2px);
       }
       .progress-item {
         display: flex;
@@ -128,8 +128,8 @@ $name-width: $--font-normal * 4;
       padding-top: #{calc($circle-size / 2)}px;
       padding-bottom: 50px;
       &.last {
-        border-left: 1px solid #fff;
-        transform: translateX(-1px);
+        border-left: 4px solid #fff;
+        transform: translateX(-2px);
       }
       .contractA {
         color: #ccc;
@@ -230,20 +230,29 @@ $name-width: $--font-normal * 4;
       justify-content: flex-start;
       align-items: flex-start;
       margin-top: #{round($size / 2) - round($--font-large / 2)}px;
+      width: max-content;
       .leafCompany {
         font-size: #{$--font-large}px;
         margin-bottom: 5px;
         color: #333;
+        white-space: nowrap;
       }
       .leafCompanyInfo {
         font-size: #{$--font-small}px;
         color: #333;
         padding-top: #{calc($circle-size / 2)}px;
+        width: max-content;
         .row {
           display: flex;
           flex-direction: row;
           justify-content: flex-start;
           align-items: center;
+          .label {
+            white-space: nowrap;
+          }
+          .value {
+            white-space: nowrap;
+          }
         }
       }
     }
