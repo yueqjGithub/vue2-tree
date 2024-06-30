@@ -85,10 +85,30 @@
         </div>
       </div>
     </div>
-    <div class="childrenContainer">
+    <div class="childrenContainer" v-if="!isLeaf">
       <lcc-tree v-for="(k, i) in info?.children" :key="i" :info="k" :isRoot="false" :idx="i"
       :floorLength="info?.children?.length - 1"
       ></lcc-tree>
+    </div>
+    <div v-else :class="`leafInfo ${idx === 0 ? 'firstLeafInfo' : ''}`">
+      <div class="leafCircle"></div>
+      <div class="leafRight">
+        <div class="leafCompany">{{ info?.contract_party_b_company_name }}</div>
+        <div class="leafCompanyInfo">
+          <div class="row">
+            <div class="label">账户金额:</div>
+            <div class="value">20万</div>
+          </div>
+          <div class="row">
+            <div class="label">账户金额:</div>
+            <div class="value">20万</div>
+          </div>
+          <div class="row">
+            <div class="label">账户金额:</div>
+            <div class="value">20万</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>

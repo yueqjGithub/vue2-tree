@@ -8,6 +8,16 @@ $circle-size: 36;
 // 公司名称宽度
 $name-width: $--font-normal * 4;
 
+// 声明circle变量
+@mixin circle($size) {
+  width: #{$size}px;
+  height: #{$size}px;
+  border-radius: 999px;
+  background: #409EFF;
+  margin-right: 5px;
+  border: 5px solid #fff;
+}
+
 .container {
   display: flex;
   flex-direction: row;
@@ -51,6 +61,7 @@ $name-width: $--font-normal * 4;
           height: #{$--font-normal * 2}px;
           background: #ccc;
           position: relative;
+          overflow: hidden;
           .degree-inner {
             position: absolute;
             left: 0;
@@ -98,12 +109,7 @@ $name-width: $--font-normal * 4;
         $transform-x: round($size / 2);
         // transform: translateX(-#{$transform-x}px);
         .circle {
-          width: #{$size}px;
-          height: #{$size}px;
-          border-radius: 999px;
-          background: #409EFF;
-          margin-right: 5px;
-          border: 5px solid #fff;
+          @include circle($size);
           margin-left: -#{$transform-x}px;
         }
         .name {
@@ -201,5 +207,45 @@ $name-width: $--font-normal * 4;
     justify-content: flex-start;
     align-items: flex-start;
     border-left: 1px solid #409EFF;
+  }
+  .leafInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    $margin: ($--font-normal * 2 + 3) * 3;
+    margin-top: #{$margin}px;
+    $size: calc($circle-size + 10);
+    $transform-x: round($size / 2) - 5;
+    &.firstLeafInfo {
+      margin-top: #{$margin + round($size / 2)}px;
+    }
+    .leafCircle {
+      @include circle($size);
+      margin-left: -#{$transform-x}px;
+    }
+    .leafRight {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      margin-top: #{round($size / 2) - round($--font-large / 2)}px;
+      .leafCompany {
+        font-size: #{$--font-large}px;
+        margin-bottom: 5px;
+        color: #333;
+      }
+      .leafCompanyInfo {
+        font-size: #{$--font-small}px;
+        color: #333;
+        padding-top: #{calc($circle-size / 2)}px;
+        .row {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+        }
+      }
+    }
   }
 }
