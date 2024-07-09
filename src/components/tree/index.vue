@@ -47,15 +47,15 @@
           <div class="amountContainer" v-else>
             <div class="amountRow">
               <div class="amountLabel">账户余额:</div>
-              <div class="amountValue">{{ info?.contract_money }}</div>
+              <div class="amountValue">{{ contractInfo?.payment_sum_str }}</div>
+            </div>
+            <div class="amountRow">
+              <div class="amountLabel">合同应收金额:</div>
+              <div class="amountValue">{{ contractInfo?.invoice_sum_str }}</div>
             </div>
             <div class="amountRow">
               <div class="amountLabel">账户余额:</div>
-              <div class="amountValue">{{ info?.contract_money }}</div>
-            </div>
-            <div class="amountRow">
-              <div class="amountLabel">账户余额:</div>
-              <div class="amountValue">{{ info?.contract_money }}</div>
+              <div class="amountValue">{{ contractInfo?.contract_payable }}</div>
             </div>
           </div>
         </div>
@@ -69,7 +69,7 @@
             <div class="btnRow">
               <div class="btnRowLabel">合同</div>
               <div class="btnList">
-                <button class="btn">变更</button>
+                <button class="btn" @click="testHandler">变更</button>
                 <button class="btn">作废</button>
                 <button class="btn">签署</button>
               </div>
@@ -88,6 +88,11 @@
     <div class="childrenContainer" v-if="!isLeaf">
       <lcc-tree v-for="(k, i) in info?.children" :key="i" :info="k" :isRoot="false" :idx="i"
       :floorLength="info?.children?.length - 1"
+      :contractInfo="{
+        payment_sum_str: info?.payment_sum_str,
+        invoice_sum_str: info?.invoice_sum_str,
+        contract_payable: info?.contract_payable
+      }"
       ></lcc-tree>
     </div>
     <div v-else :class="`leafInfo ${idx === 0 ? 'firstLeafInfo' : ''}`">
@@ -95,18 +100,18 @@
       <div class="leafRight">
         <div class="leafCompany">{{ info?.contract_party_b_company_name }}</div>
         <div class="leafCompanyInfo">
-          <div class="row">
-            <div class="label">账户金额:</div>
-            <div class="value">20万</div>
-          </div>
-          <div class="row">
-            <div class="label">账户金额:</div>
-            <div class="value">20万</div>
-          </div>
-          <div class="row">
-            <div class="label">账户金额:</div>
-            <div class="value">20万</div>
-          </div>
+          <div class="amountRow">
+              <div class="amountLabel">账户余额:</div>
+              <div class="amountValue">{{ info?.payment_sum_str }}</div>
+            </div>
+            <div class="amountRow">
+              <div class="amountLabel">合同应收金额:</div>
+              <div class="amountValue">{{ info?.invoice_sum_str }}</div>
+            </div>
+            <div class="amountRow">
+              <div class="amountLabel">账户余额:</div>
+              <div class="amountValue">{{ info?.contract_payable }}</div>
+            </div>
         </div>
       </div>
     </div>
@@ -129,6 +134,19 @@ export default {
     /** 本层深度, {0,length-1} */
     floorLength: {
       default: 0
+    },
+    /** 
+     * contract_info--合同金额相关，从上级传入,根节点不传（如app.vue里，未传该props）
+     * 使用示例查看!!91!!行，将本级金额数据组装传递给下级,
+     * 注意98行，叶子节点的附加信息节点展示自己的金额数据， 
+     * */
+    contractInfo: {
+      default: undefined
+    }
+  },
+  methods: {
+    testHandler () {
+      console.log(this.info)
     }
   },
   created() {
